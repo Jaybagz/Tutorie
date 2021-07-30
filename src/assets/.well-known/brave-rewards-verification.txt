@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: tutorie.netlify.app
+Token: ae1e0d1107fe2708593e59a438648a69d458404f0c46e33133fadef0f39d1ad3
