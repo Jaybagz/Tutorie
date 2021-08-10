@@ -31,6 +31,66 @@
 		"logo": "images/tuturielogowithname.png",
 		"sameAs": []
 }</script>
+<script type="text/javascript">
+	var cancel_btn = document.querySelector(".cancel_btn");
+	var modal_popup = document.querySelector(".modal_popup");
+
+	var close_btn = document.querySelector(".close_btn");
+	var popup_cancel_btn = document.querySelector(".popup_cancel_btn");
+	
+
+	cancel_btn.addEventListener("click", function(){
+		modal_popup.classList.add("active");
+	})
+
+	close_btn.addEventListener("click", function(){
+		modal_popup.classList.remove("active");
+	})
+	popup_cancel_btn.addEventListener("click", function(){
+		modal_popup.classList.remove("active");
+	})
+</script>
+<script src="https://www.paypal.com/sdk/js?client-id=sb&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+  <script>
+    function initPayPalButton() {
+      paypal.Buttons({
+        style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'paypal',
+          
+        },
+
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{"description":"Legend Bundles","amount":{"currency_code":"USD","value":45}}]
+          });
+        },
+
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(orderData) {
+            
+            // Full available details
+            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+            // Show a success message within this page, e.g.
+            const element = document.getElementById('paypal-button-container');
+            element.innerHTML = '';
+            element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+            // Or go to another URL:  actions.redirect('thank_you.html');
+            
+          });
+        },
+
+        onError: function(err) {
+          console.log(err);
+        }
+      }).render('#paypal-button-container');
+    }
+    initPayPalButton();
+  </script>
     <meta name="theme-color" content="#0e3e7f">
     <meta property="og:title" content="Tutorie">
     <meta property="og:description" content="">
